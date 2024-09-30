@@ -136,14 +136,16 @@ void init_xtwister(void)
     for (int i = 0; i < MAX_COMMAND; ++i)
         std::printf("%d --> %d\n", i, s_jam_table[i]);
 
-    int i = 0;
-    for (int id = 0; id < MAX_COMMAND; ++id, ++i)
+    for (int id = 0; id < MAX_COMMAND; ++id)
     {
+        for (int i = MAX_COMMAND - 1; i >= 0; --i)
+        {
 #undef DEFINE_COMMAND
 #define DEFINE_COMMAND(id, fn, index) do { \
     if (DO_TWIST(id) == s_jam_table[i]) { s_fn_table[s_jam_table[i]] = ~(size_t)fn; } \
 } while (0);
 #include "commands.h"
+        }
     }
 }
 
