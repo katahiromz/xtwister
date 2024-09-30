@@ -126,6 +126,9 @@ void init_xtwister(void)
     }
 #endif
 
+    for (int i = 0; i < MAX_COMMAND * sizeof(float) / sizeof(int); ++i)
+        ((float*)s_jam_table)[i] = std::sin(i);
+
     for (int i = 0; i < MAX_COMMAND; ++i)
         s_jam_table[i] = i;
 
