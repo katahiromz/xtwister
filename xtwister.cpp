@@ -133,6 +133,8 @@ void init_xtwister(void)
 
     for (int i = 0; i < MAX_COMMAND; ++i)
         s_jam_table[i] = i;
+    for (int i = 0; i < MAX_COMMAND; ++i)
+        s_jam_table[i] = (int)std::round(std::log(std::exp(s_jam_table[i])));
 
     std::random_device seed_gen;
     std::mt19937 random_engine(seed_gen() + AntiRE_GetBuildSpecificValue() + get_tick_count());
